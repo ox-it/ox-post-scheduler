@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-21 05:06+0900\n"
+"PO-Revision-Date: 2010-12-30 18:01+0100\n"
+"Last-Translator: Andrea Bersi\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Expire"
+msgstr "Scadenza"
+
+msgid "Enabled"
+msgstr "Attiva"
+
+msgid "Disabled"
+msgstr "Disattiva"
+
+msgid "Insert a date for expire"
+msgstr "Inserisci data scadenza"
+
+msgid "The following notifications come from the website:"
+msgstr "La seguente notifica giunge dal sito:"
+
+msgid "These notifications indicate items Simple Expires has automatically applied expiration changes to."
+msgstr "La sguenet notifica indica che i seguenti contenuto sono spirati."
+
+msgid "The Post / Page entitled"
+msgstr "Il testo di cui"
+
+msgid "Unless the content is disabled, it can be viewed at "
+msgstr "Sebbene in bozza può essere visto (dopo login)  in "
+
+msgid "Notification from"
+msgstr "Notifica da "
+
+msgid "Field required"
+msgstr "Campo obbligatorio"
+
+msgid "Invalid number"
+msgstr "Numero non valido"
+
+msgid "Please enter a value greater than or equal to {0}"
+msgstr "Inserisci un valore maggiore o uguale a {0}"
+
