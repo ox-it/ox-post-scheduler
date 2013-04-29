@@ -1,42 +1,33 @@
-=== Simple Expires ===
-Contributors: abmcr (andrea bersi)
-Donate link: http://www.andreabersi.com/
-Tags: automation, expire, expires, expiring, schedule, scheduling
+=== Oxford Digital Signage Post Scheduler ===
+Contributors: Guido Klingbeil, Marko Jung, abmcr (andrea bersi)
+Donate link: 
+Tags: digital signage, automation, expire, expires, expiring, schedule, scheduling
 Requires at least: 3.0.3
 Tested up to: 3.2 beta
 Stable tag: trunk
 
-Enable Posts and Pages to automatically expire and change at a certain time, and provide notification of expiration.
+Enable posts to be automatically scheduled and expired at defined points in time. When a post is scheduled,
+its status is changed form 'draft' to 'published'. When its expires it is changed form 'published' to 'draft'.
 
 == Description ==
 
-Enable Posts and Pages to automatically expire and change at a certain time, and provide notification of expiration.
+Enable posts to be automatically enabled and expires at defined points in time.
 
-
-= Notification Options =
-
-Simple Expires  also notify you:
-
-* When expiration occurs
-
-This reminder helps you keep content fresh, providing a reminder that content is out of date and needs updated or replaced.
 
 == Installation ==
 
-To install Simple Expires:
+To install Oxford Digital Signage Post Scheduler:
 
-1. Upload the "simple-expires" directory and all its contents to your `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Upload the "ox-post-scheduler" directory and all its contents to your `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+
 
 == Frequently Asked Questions ==
 
 = What about this plugin? =
 
-This plugin is a simple version of another plugin:  ["Content Scheduler"](http://wordpress.org/extend/plugins/content-scheduler/) 
-
-= Does Simple Expires work with Network / Multisite installations? =
-
-Maybe. This is not tested.
+This plugin is a simple version of the Simple Expires plugin by Andrea Bersi. As extra functionality we implemented a an enable time for posts
+making it a simple post scheduling plugin.
 
 = It is possible to set the state of post/page at expires? =
 
@@ -44,25 +35,10 @@ No! If you need more control use the very best plugin ["Content Scheduler"](http
 
 == Screenshots ==
 
-1. Simple Expires.
+To be done.
 
+= 0.0.2 =
+* Various bug fixes.
 
-== Changelog ==
-= 1.3 =
-* Russian language (By Alexey Pazdnikov).
-= 1.2 =
-* Update for timezone (By Kevin Roberts).
-= 1.1 =
-* Update for custom post type (By Igor Riboni).
-= 1.0 =
-* First public release.
-
-== Upgrade Notice ==
-= 1.2 =
-Bug fix
-= 1.1 =
-Bug Fix
-= 1.0 =
-Version 0.1 is the first public release.
-
-
+= 0.0.1 =
+* initial fork of Andrea Bersi's Simple Expires plugin version 1.3.
