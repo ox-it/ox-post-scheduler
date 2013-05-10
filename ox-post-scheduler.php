@@ -77,6 +77,8 @@ function ox_expiry_deactivation() {
 
 add_action('admin_menu', 'ox_expiry_load_admin');
 function ox_expiry_load_admin() {
+  error_log("loading ox_expiry admin menu");
+
   load_plugin_textdomain(
     OX_POST_SCHEDULER_DOMAIN, PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/lang', dirname(plugin_basename(__FILE__)).'/lang'
     );
@@ -215,7 +217,7 @@ function ox_expiry_($post) {
     $time_disable = get_post_meta($post->ID,'ox-disable-date',true);
 
     // set the default expiry date to one year from now on
-    $time_adj = time() + (365 * 24 * 60 * 60);
+    $time_adj = time() + (7 * 24 * 60 * 60);
 
     // parse the expiry date into easy to read variables
     $disable_day =   (! empty($time_disable)) ? mysql2date( 'd', $time_disable, false ) : gmdate( 'd', $time_adj );
@@ -296,11 +298,15 @@ function ox_expiry_save_postdata( $post_id ) {
   error_log("ox_expiry_save_postdata: save data. Post ID:".$post_id."\n");
 
   // handle enable data
-  $mydata = $_POST['enable_year']."-".$_POST['enable_month']."-".zeroise($_POST['enable_day'],2)." ".zeroise($_POST['enable_hour'],2).":".$_POST['enable_min'].":00";
-  $mydata = date('Y-m-d H:i:s',strtotime($mydata));
+  $enable_date = $_POST['enable_year']."-".
+  				$_POST['enable_month']."-".
+  				zeroise($_POST['enable_day'],2)." ".
+  				zeroise($_POST['enable_hour'],2).":".
+  				$_POST['enable_min'].":00";
+  $enable_date = date('Y-m-d H:i:s',strtotime($enable_date));
 
   if(isset($_POST['has_enable'])) {
-    update_post_meta($post_id,'ox-enable-date', date($mydata));
+    update_post_meta($post_id,'ox-enable-date', date($enable_date));
     update_post_meta( $post_id, 'ox-has-enable-date', "1" );
   } else {
     delete_post_meta($post_id,'ox-enable-date');
@@ -308,22 +314,28 @@ function ox_expiry_save_postdata( $post_id ) {
   }
 
   // handle disable data
-  $mydata = $_POST['disable_year']."-".$_POST['disable_month']."-".zeroise($_POST['disable_day'],2)." ".zeroise($_POST['disable_hour'],2).":".$_POST['disable_min'].":00";
-  $mydata = date('Y-m-d H:i:s',strtotime($mydata));
+  $disable_date = $_POST['disable_year']."-".
+  				$_POST['disable_month']."-".
+  				zeroise($_POST['disable_day'],2)." ".
+  				zeroise($_POST['disable_hour'],2).":".
+  				$_POST['disable_min'].":00";
+  $disable_date = date('Y-m-d H:i:s',strtotime($disable_date));
 
   if(isset($_POST['has_disable'])) {
-    update_post_meta($post_id,'ox-disable-date', date($mydata));
+    update_post_meta($post_id,'ox-disable-date', date($disable_date));
     update_post_meta( $post_id, 'ox-has-disable-date', "1" );
   } else {
     delete_post_meta($post_id,'ox-disable-date');
     delete_post_meta( $post_id, 'ox-has-disable-date');
   }
   
-  error_log("ox_expiry_save_postdata: disable date: ".$mydata.", current_time: ".current_time("mysql")."\n");
+  error_log("ox_expiry_save_postdata: enable date: ".$enable_date.
+  			", disable date: ".$disable_date.
+  			", current_time: ".current_time("mysql")."\n");
   
   // if the enable date is in the future, set post status to draft
   // I have to do this in a save manner, otherwise there will be an infinite loop
-  if($mydata > current_time("mysql")) {
+  if( isset($_POST['has_enable']) && $enable_date > current_time("mysql") ) {
       if(!wp_is_post_revision($post_id)) {
           // unhook
           remove_action('save_post', 'ox_expiry_save_postdata');
